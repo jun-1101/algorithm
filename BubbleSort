@@ -1,0 +1,22 @@
+import time
+
+arr = list(map(int, input("請輸入數字（空格分開）：").split()))
+print("原始陣列:", arr)
+
+print("\n時間複雜度 Big-O: 最好 O(n)、平均 O(n^2)、最壞 O(n^2)")
+
+start_time = time.time()
+
+n = len(arr)
+for i in range(n):
+    print(f"\n第 {i+1} 輪:")
+    for j in range(0, n-i-1):
+        print("比較:", arr[j], "和", arr[j+1])
+        if arr[j] > arr[j+1]:
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+            print("交換後 ->", arr)
+
+end_time = time.time()
+
+print("\n排序結果:", arr)
+print(f"排序花費時間: {end_time - start_time:.6f} 秒")

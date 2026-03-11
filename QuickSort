@@ -1,0 +1,36 @@
+import time
+
+arr = list(map(int, input("請輸入數字（空格分開）：").split()))
+print("原始陣列:", arr)
+
+print("\n時間複雜度 Big-O: 最好 O(n log n)、平均 O(n log n)、最壞 O(n^2)")
+
+start_time = time.time()
+
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        print("分割後陣列:", arr)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    print("\n基準值 Pivot:", pivot)
+    for j in range(low, high):
+        print("比較:", arr[j], "和", pivot)
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+            print("交換後 ->", arr)
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    print("將 Pivot 放到正確位置 ->", arr)
+    return i + 1
+
+quick_sort(arr, 0, len(arr)-1)
+
+end_time = time.time()
+
+print("\n排序結果:", arr)
+print(f"排序花費時間: {end_time - start_time:.6f} 秒")
